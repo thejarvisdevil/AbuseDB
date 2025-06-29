@@ -1,0 +1,37 @@
+{
+    "geode": "4.4.0",
+    "gd": {
+        "win": "2.2074",
+        "android": "2.2074",
+        "mac": "2.2074",
+        "ios": "2.2074"
+    },
+    "id": "jarvisdevil.abusedb",
+    "name": "AbuseDB",
+    "version": "v1.1.0",
+    "developer": "jarvisdevil",
+    "description": "Additional moderation system",
+    "links": {
+        "homepage": "https://jarvisdevil.com/abuse",
+        "community": "https://discord.com/invite/EygBPh6JwW",
+        "source": "https://github.com/thejarvisdevil/AbuseDB"
+    },
+    "dependencies": [
+        {
+            "id": "jouca.badgesapi",
+            "version": ">=v1.2.2",
+            "importance": "required"
+        },
+        {
+            "id": "geode.node-ids",
+            "version": ">=v1.20.1",
+            "importance": "required"
+        }
+    ],
+    "resources": {
+        "sprites": [
+            "resources/admin.png"
+        ]
+    },
+    "tags": ["online", "enhancement", "interface", "content", "utility"]
+}
