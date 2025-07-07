@@ -10,7 +10,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
     bool init() override {
         if (!MenuLayer::init()) return false;
 
-        auto menu = this->getChildByID("bottom-menu");
+        auto menu = this->getChildByID("right-side-menu");
         auto icon = CCSprite::createWithSpriteFrameName("GJ_reportBtn_001.png");
         icon->setScale(1.05f);
         auto item = CCMenuItemSpriteExtra::create(icon, this, menu_selector(ADBMenuLayer::onOpenFlags));
