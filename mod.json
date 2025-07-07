@@ -1,5 +1,5 @@
 {
-    "geode": "4.4.0",
+    "geode": "4.6.2",
     "gd": {
         "win": "2.2074",
         "android": "2.2074",
@@ -8,7 +8,7 @@
     },
     "id": "jarvisdevil.abusedb",
     "name": "AbuseDB",
-    "version": "v1.1.0",
+    "version": "v1.1.1",
     "developer": "jarvisdevil",
     "description": "Additional moderation system",
     "links": {
