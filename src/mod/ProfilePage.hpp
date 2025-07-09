@@ -64,6 +64,7 @@ class $modify(ADBProfilePage, ProfilePage) {
         }
 
         auto& name = score->m_userName;
+
         if (!m_fields->addedBadge
             && std::find(moderators.begin(), moderators.end(), name) != moderators.end())
         {
@@ -72,6 +73,14 @@ class $modify(ADBProfilePage, ProfilePage) {
                 0.1f
             );
             m_fields->addedBadge = true;
+        }
+
+        if (std::find(flaggedUsers.begin(), flaggedUsers.end(), name) != flaggedUsers.end()) {
+            if (auto menu = static_cast<CCMenu*>(m_mainLayer->getChildByIDRecursive("username-menu"))) {
+                if (auto label = typeinfo_cast<CCLabelBMFont*>(menu->getChildByIDRecursive("username-label"))) {
+                    label->setColor({220, 0, 0});
+                }
+            }
         }
     }
 

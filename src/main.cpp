@@ -25,6 +25,7 @@ const fs::path ignoredAccs = Mod::get()->getConfigDir() / "ignored-accounts.txt"
 
 std::unordered_set<int> hiddenLvls, hiddenAccs;
 std::vector<std::string> moderators;
+std::vector<std::string> flaggedUsers;
 
 void saveLvls() {
     std::ostringstream oss;
@@ -68,9 +69,26 @@ static void getMods() {
     m.setFilter(req.get("https://jarvisdevil.com/abuse/api.php?api=mods"));
 }
 
+static void getFlaggedUsers() {
+    web::WebRequest req;
+    req.timeout(std::chrono::seconds(5));
+    static EventListener<web::WebTask> m;
+    m.bind([](web::WebTask::Event* e) {
+        if (auto res = e->getValue(); res && res->code() >= 200 && res->code() < 300) {
+            flaggedUsers.clear();
+            std::istringstream ss(res->string().unwrapOr(""));
+            for (std::string user; std::getline(ss, user, ',');)
+                if (!user.empty()) flaggedUsers.push_back(user);
+            geode::log::info("Successfully fetched bad user array.");
+        }
+    });
+    m.setFilter(req.get("https://jarvisdevil.com/abuse/api.php?api=badusers"));
+}
+
 $execute {
     loadLvls();
     loadAccs();
     getMods();
+    getFlaggedUsers();
     geode::log::info("Thanks for using AbuseDB! -jarvisdevil");
 }
