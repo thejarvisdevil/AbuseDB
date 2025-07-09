@@ -72,7 +72,16 @@ class ReportLevel : public Popup<>, public FLAlertLayerProtocol {
         FLAlertLayer::create(
             this,
             "Information",
-            "<cg>page 1</c>",
+            "<cg>AbuseDB is a project created by jarvisdevil that serves as an alternative source of in-game moderation and we get work done ASAP. "
+            "Make sure to report as much content as you can, this helps AbuseDB users stay safe across all of Geometry Dash without them having to worry about harmful content.</c>\n\n"
+            "When a level is flagged by AbuseDB mods, there will be a popup "
+            "when you go to the level which contains the reason for the flag.\n"
+            "<cr>To avoid abuse of this system, we will ban accounts from reporting that repeatedly "
+            "misuse this form and we also have filters to prevent abuse.</c>\n"
+            "<co>To make sure we can properly handle your report, please make sure that you provide a valid reason, "
+            "must not be gibberish and contain detail so we don't get lost/confused.</c>\n"
+            "When reporting please make sure that your standards are high and that you only report content that is truly harmful to "
+            "the Geometry Dash community.\n <cj>To help with this, here are some DO and DONTs when it comes to reporting so...</c>",
             "Next Page",
             nullptr,
             winSize.width - 40.f,
@@ -83,12 +92,23 @@ class ReportLevel : public Popup<>, public FLAlertLayerProtocol {
     }
 
     void FLAlert_Clicked(FLAlertLayer*, bool btn2) override {
+        // this is so goofy
         if (!btn2) {
             auto winSize = CCDirector::sharedDirector()->getWinSize();
             FLAlertLayer::create(
                 nullptr,
                 "DOs and DON'Ts",
-                "<cg>page 2</c>",
+                "<cg>DO:</c>\n"
+                "- Report levels that is made to harass someone.\n"
+                "- Report levels that are uploaded by bots.\n"
+                "- Report levels that are only made for a purpose to troll, includes NSFW or harmful content or anything else that is as bad.\n"
+                "- Report levels that are stolen.\n\n"
+                "<cr>DONT:</c>\n"
+                "- Report levels for deletion or for a star rating, we are NOT mods.\n"
+                "- Report levels meant to crash your game.\n"
+                "- Report levels that have mild profanity (except use of slurs), no one cares about it anyways.\n"
+                "- Report levels that are way too hard for you or impossible.\n\n\n"
+                "<cg>If you have any questions about what to report or not, please join our Discord Server at dsc.gg/devlin and ask there. Thank you for using AbuseDB!</c>",
                 "OK",
                 nullptr,
                 winSize.width - 40.f,
