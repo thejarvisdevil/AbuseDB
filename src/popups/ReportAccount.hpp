@@ -14,6 +14,7 @@ class ReportAccount : public Popup<>, public FLAlertLayerProtocol {
     TextInput* input{ nullptr };
     CCMenuItemSpriteExtra* sendButton{ nullptr };
     EventListener<web::WebTask> reportListener;
+    LoadingCircleSprite* m_postSubmitCircle;
 
     void onInfo(CCObject*) {
         auto winSize = CCDirector::sharedDirector()->getWinSize();
@@ -115,6 +116,14 @@ class ReportAccount : public Popup<>, public FLAlertLayerProtocol {
             ButtonSprite::create("Send Report"),
             this, menu_selector(ReportAccount::onSend)
         );
+
+        m_postSubmitCircle = LoadingCircleSprite::create(1.f);
+        m_postSubmitCircle->setVisible(false);
+        m_postSubmitCircle->setPosition({ size.width / 2, size.height / 2 - 40.f});
+        m_postSubmitCircle->setScale(0.7f);
+
+        m_mainLayer->addChild(m_postSubmitCircle);
+
         auto menu = CCMenu::createWithItem(sendButton);
         menu->setPosition({ size.width / 2, size.height / 2 - 40.f });
         m_mainLayer->addChild(menu);
@@ -125,7 +134,12 @@ class ReportAccount : public Popup<>, public FLAlertLayerProtocol {
     void onSend(CCObject*) {
         if (!GJAccountManager::get()) { return; }
 
-        if (sendButton) sendButton->setEnabled(false);
+        if (sendButton) {
+            sendButton->setEnabled(false);
+            sendButton->setVisible(false);
+        }
+
+        if (m_postSubmitCircle) m_postSubmitCircle->setVisible(true);
 
         auto reason = input->getString();
 
@@ -152,16 +166,20 @@ class ReportAccount : public Popup<>, public FLAlertLayerProtocol {
                 return;
             if (auto res = e->getValue()) {
                 if (res->code() == 403) {
-                    FLAlertLayer::create("Banned", "You have been banned from reporting.\nYou can appeal by joining our Discord Server at dsc.gg/devlin and begging on your knees.", "OK")->show();
+                    FLAlertLayer::create("Banned", "You have been <cy>banned</c> from <cg>reporting.</c>\nYou can <cf>appeal</c> by joining our Discord Server at dsc.gg/devlin and begging on your knees.", "OK")->show();
                     this->onClose(nullptr);
                     return;
                 }
                 if (res->code() >= 200 && res->code() < 300) {
-                    FLAlertLayer::create("Success", "Report sent successfully, we are taking a look at it now. Just in case we need more information, please have your messages on.", "OK")->show();
+                    FLAlertLayer::create("Success", "Report sent <cl>successfully</c>, we are taking a look at it now. Just in case we need more <cy>information</c>, please have your <cf>messages on.</c>", "OK")->show();
                     this->onClose(nullptr);
                 } else {
-                    FLAlertLayer::create("Error", "Failed to send report. Please try again later.", "OK")->show();
-                    if (sendButton) sendButton->setEnabled(true);
+                    FLAlertLayer::create("Error", "<cr>Failed</c> to send <cg>report</c>. Please try again later.", "OK")->show();
+                    if (m_postSubmitCircle) m_postSubmitCircle->setVisible(false);
+                    if (sendButton) {
+                        sendButton->setEnabled(true);
+                        sendButton->setVisible(true);
+                    }
                 }
             }
         });
