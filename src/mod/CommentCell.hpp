@@ -39,8 +39,5 @@ class $modify(ADBCommentCell, CommentCell) {
         }
     }
 
-    void onBadge(CCObject*) {
-        /* modify the code here, what exactly are you trying to do? */
-        FLAlertLayer::create("AbuseDB Mod", "This badge <cl>indicates</c> an <cp>AbuseDB mod.</c> Their main task is to <cf>read reports</c> or <cr>flag</c> users and levels.", "OK")->show();
-    }
+    void onBadge(CCObject*) {}
 };
