@@ -21,7 +21,7 @@ AbuseDB was made to save a few seconds of Elder Moderators' time since they are 
 
 ## Example Use Cases
 - **Level Request Streamer?**: If you do level request streams on YouTube or Twitch, people may send NSFW levels to try to get you banned off the platform. With AbuseDB, if someone else reports a level and gets flagged (we are fast on these cases) then you will know before playing the level on stream that you might be playing a level that has NSFW content inside it.
-- **Bot or Not?**: If you receive a strange message in Geometry Dash or someone you met has highly suspicious behavior, you can check their profile. The moment you click on someone's profile, an alert might pop up about the account if it's flagged. Since we also flag bot/spam accounts, you will know it might be a bot. If you did find a bot and it's not flagged, report it through the in-game account reporting system.
+- **Bot or Not?**: If you receive a strange message in Geometry Dash or someone you met or have seen has highly suspicious behavior, you can check their profile. The moment you click on someone's profile, an alert might pop up about the account if it's flagged. Since we also flag bot/spam accounts, you will know it might be a bot. If you did find a bot and it's not flagged, report it through the in-game account reporting system.
 - **Daily Chat**: omg just start reporting everyone there :sob:
 
 For more information, visit the [AbuseDB Website](https://jarvisdevil.com/abuse).
