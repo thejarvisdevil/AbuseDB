@@ -1,3 +1,9 @@
+# v1.3.0
+- discord text on popups are fixed so they dont go offscreen (huge thanks to my 6 inch hdmi display!)
+- mods can flag in-game now!
+- commonly used special characters are now allowed in text fields
+- in the abusedb menu, i swapped mod list for a link to my youtube channel. kids kept annoying abusedb mods so i made it harder for them to be message spammed.
+- custom messages returned from the site can be shown when reporting, useful if something changes.
 # v1.2.0
 - abusedb menu (replaces the View Flags button on MenuLayer)
 - usernames marked as red in comments if they are flagged on AbuseDB

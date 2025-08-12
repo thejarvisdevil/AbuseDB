@@ -8,7 +8,7 @@ else()
 endif()
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-project(AbuseDB VERSION 1.2.1)
+project(AbuseDB VERSION 1.3.0)
 
 add_library(${PROJECT_NAME} SHARED
     src/main.cpp

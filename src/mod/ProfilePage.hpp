@@ -4,6 +4,7 @@
 #include <Geode/utils/web.hpp>
 #include "../globals.hpp"
 #include "popups/ReportAccount.hpp"
+#include "popups/FlagAccount.hpp"
 
 using namespace geode::prelude;
 
@@ -58,6 +59,19 @@ class $modify(ADBProfilePage, ProfilePage) {
                     reportBtn, this, menu_selector(ADBProfilePage::onReportAcc)
                 );
                 menu->addChild(btn);
+
+                const auto& username = GJAccountManager::get()->m_username;
+                if (!username.empty() && std::find(moderators.begin(), moderators.end(), username) != moderators.end()) {
+                    auto adbMod = CCSprite::createWithSpriteFrameName("GJ_reportBtn_001.png");
+                    adbMod->setColor({0, 255, 0});
+                    adbMod->setScale(0.7f);
+                    auto modBtn = CCMenuItemSpriteExtra::create(
+                        adbMod,
+                        this,
+                        menu_selector(ADBProfilePage::onFlagAcc)
+                    );
+                    menu->addChild(modBtn);
+                }
                 menu->updateLayout();
                 m_fields->addedReportBtn = true;
             }
@@ -86,6 +100,12 @@ class $modify(ADBProfilePage, ProfilePage) {
 
     void onReportAcc(CCObject*) {
         if (auto popup = ReportAccount::create(m_score->m_accountID)) {
+            popup->show();
+        }
+    }
+
+    void onFlagAcc(CCObject*) {
+        if (auto popup = FlagAccount::create(m_score->m_accountID)) {
             popup->show();
         }
     }

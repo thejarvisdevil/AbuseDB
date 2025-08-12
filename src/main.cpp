@@ -79,7 +79,7 @@ static void getFlaggedUsers() {
             std::istringstream ss(res->string().unwrapOr(""));
             for (std::string user; std::getline(ss, user, ',');)
                 if (!user.empty()) flaggedUsers.push_back(user);
-            geode::log::info("Successfully fetched bad user array.");
+            geode::log::info("Successfully fetched flagged account array.");
         }
     });
     m.setFilter(req.get("https://jarvisdevil.com/abuse/api.php?api=badusers"));

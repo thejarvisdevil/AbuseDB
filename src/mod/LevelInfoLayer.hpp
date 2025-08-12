@@ -4,6 +4,7 @@
 #include <Geode/utils/web.hpp>
 #include "../globals.hpp"
 #include "popups/ReportLevel.hpp"
+#include "popups/FlagLevel.hpp"
 
 using namespace geode::prelude;
 
@@ -59,11 +60,30 @@ class $modify(ADBLevelInfoLayer, LevelInfoLayer) {
             );
             leftMenu->addChild(btn);
             leftMenu->updateLayout();
+
+            const auto& username = GJAccountManager::get()->m_username;
+            if (!username.empty()) { // its 9:14pm and i am tired
+                if (std::find(moderators.begin(), moderators.end(), username) != moderators.end()) {
+                    auto adbMod = CCSprite::createWithSpriteFrameName("GJ_reportBtn_001.png");
+                    adbMod->setColor({0, 255, 0});
+                    auto modBtn = CCMenuItemSpriteExtra::create(
+                        adbMod,
+                        this,
+                        menu_selector(ADBLevelInfoLayer::onFlag)
+                    );
+                    leftMenu->addChild(modBtn);
+                    leftMenu->updateLayout();
+                }
+            }
         }
         return true;
     }
 
     void onReport(CCObject*) {
         if (auto popup = ReportLevel::create(m_level)) popup->show();
+    }
+
+    void onFlag(CCObject*) {
+        if (auto popup = FlagLevel::create(m_level)) popup->show();
     }
 };

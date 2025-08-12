@@ -28,7 +28,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
             {"Website", "https://jarvisdevil.com/abuse/"},
             {"Discord", "https://dsc.gg/devlin"},
             {"Source Code", "https://github.com/thejarvisdevil/AbuseDB"},
-            {"Mod List", "https://jarvisdevil.com/abuse/api.php?api=mods"},
+            {"YouTube", "https://www.youtube.com/@jarvisdevlin"},
             {"Credits", ""},
         };
 
@@ -77,13 +77,12 @@ class $modify(ADBMenuLayer, MenuLayer) {
             case 1: web::openLinkInBrowser("https://jarvisdevil.com/abuse/"); break;
             case 2: web::openLinkInBrowser("https://dsc.gg/devlin"); break;
             case 3: web::openLinkInBrowser("https://github.com/thejarvisdevil/AbuseDB"); break;
-            case 4: web::openLinkInBrowser("https://jarvisdevil.com/abuse/api.php?api=mods"); break;
+            case 4: web::openLinkInBrowser("https://www.youtube.com/@jarvisdevlin"); break;
             case 5:
                 FLAlertLayer::create(
                     "Thanks!",
                     "<cg>AbuseDB (+ Geode Integration) created by jarvisdevil.</c> (jarvisdevil.com)\n"
-                    "<co>Wyliemaster for documenting everything such as these</c> <cr>COLOR</c> <cb>TAGS!</c> (wyliemaster.github.io/gddocs)\n"
-                    "<cy>and a very special thanks to the staff over at Geode SDK and my AbuseDB Mod Team for making my wish come true!</c>",
+                    "<cy>and a very special thanks to the staff over at Geode SDK and my AbuseDB Mod Team for making this a reality!</c>",
                     "OK"
                 )->show();
                 break;

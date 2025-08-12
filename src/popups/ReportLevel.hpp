@@ -44,16 +44,17 @@ class ReportLevel : public Popup<>, public FLAlertLayerProtocol {
         m_mainLayer->addChild(warning);
 
         auto winSize = CCDirector::sharedDirector()->getWinSize();
-        auto discordLabel = CCLabelBMFont::create("Join our Discord Server at https://dsc.gg/devlin for updates or for questions about AbuseDB.", "chatFont.fnt");
+        auto discordLabel = CCLabelBMFont::create("Join our Discord Server at https://dsc.gg/devlin\nfor updates or for questions about AbuseDB.", "chatFont.fnt");
         discordLabel->setColor({255, 255, 255});
         discordLabel->setScale(0.8f);
         discordLabel->setAnchorPoint({0.5f, 0.0f});
-        discordLabel->setPosition({ winSize.width / 2, 40.f });
+        discordLabel->setPosition({ winSize.width / 2, 35.f });
         discordLabel->setOpacity(220);
         this->addChild(discordLabel, 1000);
 
         m_input = TextInput::create(260.f, "Enter a reason for your report. Please add detail so we don't decline your report.", "chatFont.fnt");
         m_input->setPosition({ size.width / 2, size.height / 2 + 20.f });
+        m_input->setFilter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./");
         m_mainLayer->addChild(m_input);
 
         sendButton = CCMenuItemSpriteExtra::create(
@@ -145,6 +146,12 @@ class ReportLevel : public Popup<>, public FLAlertLayerProtocol {
             if (e->isCancelled())
                 return;
             if (auto res = e->getValue()) {
+                auto body = res->string().unwrapOr("");
+                if (body.rfind("msg_", 0) == 0) {
+                    FLAlertLayer::create("Message", body.substr(4), "OK")->show();
+                    if (sendButton) sendButton->setEnabled(true);
+                    return;
+                }
                 if (res->code() == 403) {
                     FLAlertLayer::create("Banned", "You have been banned from reporting.\nYou can appeal by joining our Discord Server at dsc.gg/devlin and begging on your knees.", "OK")->show();
                     this->onClose(nullptr);

@@ -8,9 +8,9 @@
     },
     "id": "jarvisdevil.abusedb",
     "name": "AbuseDB",
-    "version": "v1.2.1",
+    "version": "v1.3.0",
     "developer": "jarvisdevil",
-    "description": "Additional moderation system",
+    "description": "An additional moderation system.",
     "links": {
         "homepage": "https://jarvisdevil.com/abuse",
         "community": "https://discord.com/invite/EygBPh6JwW",
