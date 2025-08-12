@@ -1,3 +1,5 @@
+# v1.3.2
+- more information on levels are sent (author accountID, levelID, name, description, author username, downloads, likes, length, is featured, is epic, time spent in editor) so we can have better filters in the future.
 # v1.3.0
 - discord text on popups are fixed so they dont go offscreen (huge thanks to my 6 inch hdmi display!)
 - mods can flag in-game now!

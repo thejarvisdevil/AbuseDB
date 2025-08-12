@@ -21,11 +21,24 @@ class $modify(ADBLevelInfoLayer, LevelInfoLayer) {
         int levelID = level->m_levelID.value();
         if (hiddenLvls.count(levelID)) return true;
 
-        web::WebRequest req;
-        req.param("api", "geode")
-           .param("level", std::to_string(levelID))
-           .param("account", std::to_string(level->m_accountID.value()))
-           .timeout(std::chrono::seconds(5));
+    auto jdStr = [](const std::string& s) { return s.empty() ? "unknown" : s; };
+    auto jdInt = [](auto v) { return std::to_string(v); };
+    web::WebRequest req;
+    req.param("api", "geode")
+       .param("level", std::to_string(levelID))
+       .param("account", std::to_string(level->m_accountID.value()))
+       .param("lvlName", jdStr(level->m_levelName))
+       .param("lvlDesc", jdStr(level->m_levelDesc))
+       .param("lvlAuthor", jdStr(level->m_creatorName))
+       .param("lvlDownloads", jdInt(level->m_downloads))
+       .param("lvlLikes", jdInt(level->m_likes))
+       .param("lvlDislikes", jdInt(level->m_dislikes)) // useless but just in case something changes in the future
+       .param("lvlLength", jdInt(level->m_levelLength))
+       .param("lvlFeatured", jdInt(level->m_featured))
+       .param("lvlEpic", jdInt(level->m_isEpic))
+       .param("lvlWorkingTime", jdInt(level->m_workingTime))
+       .param("lvlWorkingTime2", jdInt(level->m_workingTime2))
+       .timeout(std::chrono::seconds(5));
 
         m_fields->listener.bind([levelID](web::WebTask::Event* e) {
             if (auto res = e->getValue(); res && res->code() >= 200 && res->code() < 300) {
