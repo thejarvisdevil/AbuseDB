@@ -109,7 +109,7 @@ class ReportAccount : public Popup<>, public FLAlertLayerProtocol {
 
         input = TextInput::create(260.f, "Enter a reason for your report. Please add detail so we don't decline your report.", "chatFont.fnt");
         input->setPosition({ size.width / 2, size.height / 2 + 20.f });
-        input->setFilter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./");
+        input->setFilter(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./");
         m_mainLayer->addChild(input);
 
         sendButton = CCMenuItemSpriteExtra::create(

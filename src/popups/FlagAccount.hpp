@@ -21,12 +21,12 @@ class FlagAccount : public Popup<> {
 
         m_reason = TextInput::create(260.f, "Reason", "chatFont.fnt");
         m_reason->setPosition({ size.width / 2, size.height / 2 + 30.f });
-        m_reason->setFilter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./");
+        m_reason->setFilter(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./");
         m_mainLayer->addChild(m_reason);
 
         m_antistupid = TextInput::create(260.f, "Password", "chatFont.fnt");
         m_antistupid->setPosition({ size.width / 2, size.height / 2 - 10.f });
-        m_antistupid->setFilter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./");
+        m_antistupid->setFilter(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./");
         m_antistupid->setPasswordMode(true);
         m_mainLayer->addChild(m_antistupid);
 
