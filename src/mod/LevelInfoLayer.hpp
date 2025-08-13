@@ -76,10 +76,10 @@ class $modify(ADBLevelInfoLayer, LevelInfoLayer) {
 
             const auto& username = GJAccountManager::get()->m_username;
             if (!username.empty()) {
-                auto uname = username;
+                std::string uname = username;
                 std::transform(uname.begin(), uname.end(), uname.begin(), ::tolower);
                 for (const auto& mod : moderators) {
-                    auto m = mod;
+                    std::string m = mod;
                     std::transform(m.begin(), m.end(), m.begin(), ::tolower);
                     if (uname == m) {
                         auto adbMod = CCSprite::createWithSpriteFrameName("GJ_reportBtn_001.png");
