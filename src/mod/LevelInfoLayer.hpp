@@ -75,17 +75,24 @@ class $modify(ADBLevelInfoLayer, LevelInfoLayer) {
             leftMenu->updateLayout();
 
             const auto& username = GJAccountManager::get()->m_username;
-            if (!username.empty()) { // its 9:14pm and i am tired
-                if (std::find(moderators.begin(), moderators.end(), username) != moderators.end()) {
-                    auto adbMod = CCSprite::createWithSpriteFrameName("GJ_reportBtn_001.png");
-                    adbMod->setColor({0, 255, 0});
-                    auto modBtn = CCMenuItemSpriteExtra::create(
-                        adbMod,
-                        this,
-                        menu_selector(ADBLevelInfoLayer::onFlag)
-                    );
-                    leftMenu->addChild(modBtn);
-                    leftMenu->updateLayout();
+            if (!username.empty()) {
+                auto uname = username;
+                std::transform(uname.begin(), uname.end(), uname.begin(), ::tolower);
+                for (const auto& mod : moderators) {
+                    auto m = mod;
+                    std::transform(m.begin(), m.end(), m.begin(), ::tolower);
+                    if (uname == m) {
+                        auto adbMod = CCSprite::createWithSpriteFrameName("GJ_reportBtn_001.png");
+                        adbMod->setColor({0, 255, 0});
+                        auto modBtn = CCMenuItemSpriteExtra::create(
+                            adbMod,
+                            this,
+                            menu_selector(ADBLevelInfoLayer::onFlag)
+                        );
+                        leftMenu->addChild(modBtn);
+                        leftMenu->updateLayout();
+                        break;
+                    }
                 }
             }
         }
