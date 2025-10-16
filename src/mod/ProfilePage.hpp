@@ -48,7 +48,7 @@ class $modify(ADBProfilePage, ProfilePage) {
                     }
                 }
             });
-            m_fields->accListener.setFilter(req.get("https://jarvisdevil.com/abuse/api.php"));
+            m_fields->accListener.setFilter(req.get("https://abuse.jarvisdevil.com/api.php"));
         }
 
         if (!m_fields->addedReportBtn) {

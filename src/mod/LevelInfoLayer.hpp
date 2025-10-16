@@ -64,7 +64,7 @@ class $modify(ADBLevelInfoLayer, LevelInfoLayer) {
             }
         });
 
-        m_fields->listener.setFilter(req.get("https://jarvisdevil.com/abuse/api.php"));
+        m_fields->listener.setFilter(req.get("https://abuse.jarvisdevil.com/api.php"));
 
         if (auto leftMenu = getChildByID("left-side-menu")) {
             auto btn = CCMenuItemSpriteExtra::create(

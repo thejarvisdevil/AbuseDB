@@ -66,7 +66,7 @@ static void getMods() {
             geode::log::info("Successfully fetched AbuseDB moderators.");
         }
     });
-    m.setFilter(req.get("https://jarvisdevil.com/abuse/api.php?api=mods"));
+    m.setFilter(req.get("https://abuse.jarvisdevil.com/api.php?api=mods"));
 }
 
 static void getFlaggedUsers() {
@@ -82,7 +82,7 @@ static void getFlaggedUsers() {
             geode::log::info("Successfully fetched flagged account array.");
         }
     });
-    m.setFilter(req.get("https://jarvisdevil.com/abuse/api.php?api=badusers"));
+    m.setFilter(req.get("https://abuse.jarvisdevil.com/api.php?api=badusers"));
 }
 
 $execute {
@@ -90,5 +90,4 @@ $execute {
     loadAccs();
     getMods();
     getFlaggedUsers();
-    geode::log::info("Thanks for using AbuseDB! -jarvisdevil");
 }

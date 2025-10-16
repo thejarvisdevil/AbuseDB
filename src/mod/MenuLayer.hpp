@@ -24,8 +24,8 @@ class $modify(ADBMenuLayer, MenuLayer) {
         constexpr float boxW = 336, boxH = 270, btnW = 120, btnH = 60;
         struct Btn { const char* label; const char* link; };
         Btn btns[] = {
-            {"Flags", "https://jarvisdevil.com/abuse/flags.php"},
-            {"Website", "https://jarvisdevil.com/abuse/"},
+            {"Flags", "https://abuse.jarvisdevil.com/flags.php"},
+            {"Website", "https://abuse.jarvisdevil.com/"},
             {"Discord", "https://dsc.gg/devlin"},
             {"Source Code", "https://github.com/thejarvisdevil/AbuseDB"},
             {"YouTube", "https://www.youtube.com/@jarvisdevlin"},
@@ -73,8 +73,8 @@ class $modify(ADBMenuLayer, MenuLayer) {
         auto btn = static_cast<CCMenuItemSpriteExtra*>(sender);
         int tag = btn->getTag();
         switch (tag) {
-            case 0: web::openLinkInBrowser("https://jarvisdevil.com/abuse/flags.php"); break;
-            case 1: web::openLinkInBrowser("https://jarvisdevil.com/abuse/"); break;
+            case 0: web::openLinkInBrowser("https://abuse.jarvisdevil.com/flags.php"); break;
+            case 1: web::openLinkInBrowser("https://abuse.jarvisdevil.com/"); break;
             case 2: web::openLinkInBrowser("https://dsc.gg/devlin"); break;
             case 3: web::openLinkInBrowser("https://github.com/thejarvisdevil/AbuseDB"); break;
             case 4: web::openLinkInBrowser("https://www.youtube.com/@jarvisdevlin"); break;
@@ -82,7 +82,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
                 FLAlertLayer::create(
                     "Thanks!",
                     "<cg>AbuseDB (+ Geode Integration) created by jarvisdevil.</c> (jarvisdevil.com)\n"
-                    "<cy>and a very special thanks to the staff over at Geode SDK and my AbuseDB Mod Team for making this a reality!</c>",
+                    "<cy>and a very special thanks to all the AbuseDB Moderators for helping out!</c>",
                     "OK"
                 )->show();
                 break;

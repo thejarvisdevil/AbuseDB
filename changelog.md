@@ -1,3 +1,5 @@
+# v1.3.4
+- jarvisdevil.com/abuse/ ==> abuse.jarvisdevil.com
 # v1.3.3
 - fix a small issue for in-game flagging
 # v1.3.2
