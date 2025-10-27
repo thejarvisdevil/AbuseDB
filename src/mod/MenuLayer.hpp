@@ -3,6 +3,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/utils/web.hpp>
+#include "globals.hpp"
 
 using namespace geode::prelude;
 
@@ -30,6 +31,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
             {"Source Code", "https://github.com/thejarvisdevil/AbuseDB"},
             {"YouTube", "https://www.youtube.com/@jarvisdevlin"},
             {"Credits", ""},
+            {"Refresh", ""}
         };
 
         auto winSize = CCDirector::sharedDirector()->getWinSize();
@@ -47,7 +49,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
         titleLabel->setPosition({boxW/2, boxH - 32});
         bg->addChild(titleLabel);
 
-        auto menu = CCMenu::create();
+        /*auto menu = CCMenu::create();
         for (int i = 0; i < 6; ++i) {
             float x = 84 + (i % 2) * 168;
             float y = boxH - 80 - (i / 2) * 60;
@@ -58,7 +60,21 @@ class $modify(ADBMenuLayer, MenuLayer) {
             menu->addChild(btn);
         }
         menu->setPosition({0, 0});
+        bg->addChild(menu);*/
+
+        auto menu = CCMenu::create();
+        for (int i = 0; i < 7; ++i) {
+            float x = (i < 6) ? 84 + (i % 2) * 168 : boxW / 2;
+            float y = boxH - 80 - ((i < 6 ? i / 2 : 3) * 50);
+            auto btnSprite = ButtonSprite::create(btns[i].label, btnW, true, "goldFont.fnt", "GJ_button_01.png", 30, 1.f);
+            auto btn = CCMenuItemSpriteExtra::create(btnSprite, this, menu_selector(ADBMenuLayer::onADBLink));
+            btn->setTag(i);
+            btn->setPosition({x, y});
+            menu->addChild(btn);
+        }
+        menu->setPosition({0, 0});
         bg->addChild(menu);
+
 
         auto closeBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png"), this, menu_selector(ADBMenuLayer::diediedie));
         closeBtn->setPosition({0, boxH});
@@ -83,6 +99,14 @@ class $modify(ADBMenuLayer, MenuLayer) {
                     "Thanks!",
                     "<cg>AbuseDB (+ Geode Integration) created by jarvisdevil.</c> (jarvisdevil.com)\n"
                     "<cy>and a very special thanks to all the AbuseDB Moderators for helping out!</c>",
+                    "OK"
+                )->show();
+                break;
+            case 6: 
+                refreshAll(); 
+                FLAlertLayer::create(
+                    "Refreshed",
+                    "All AbuseDB data has been refreshed.",
                     "OK"
                 )->show();
                 break;

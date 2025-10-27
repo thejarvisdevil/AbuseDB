@@ -85,9 +85,14 @@ static void getFlaggedUsers() {
     m.setFilter(req.get("https://abuse.jarvisdevil.com/api.php?api=badusers"));
 }
 
-$execute {
+void refreshAll() {
     loadLvls();
     loadAccs();
     getMods();
     getFlaggedUsers();
+    geode::log::debug("I LOVE REFRESHING DATA!!!!! RAAAAA!!!!!");
+}
+
+$execute {
+    refreshAll();
 }
