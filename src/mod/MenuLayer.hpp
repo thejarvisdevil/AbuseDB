@@ -17,6 +17,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
         auto item = CCMenuItemSpriteExtra::create(icon, this, menu_selector(ADBMenuLayer::adbMenu));
         menu->addChild(item);
         menu->updateLayout();
+        setKeypadEnabled(true);
 
         return true;
     }
@@ -31,8 +32,9 @@ class $modify(ADBMenuLayer, MenuLayer) {
             {"Source", "https://github.com/thejarvisdevil/AbuseDB"},
             {"YouTube", "https://www.youtube.com/@jarvisdevlin"},
             {"Credits", ""},
-            {"Refresh", ""}
         };
+
+        if (CCDirector::sharedDirector()->getRunningScene()->getChildByTag(0xADB)) return;
 
         auto winSize = CCDirector::sharedDirector()->getWinSize();
         auto mmm = CCLayerColor::create({0,0,0,0});
@@ -75,6 +77,14 @@ class $modify(ADBMenuLayer, MenuLayer) {
         bg->addChild(refreshMenu);
 
         CCDirector::sharedDirector()->getRunningScene()->addChild(mmm, 999);
+    }
+
+    void keyBackClicked() {
+        if (CCDirector::sharedDirector()->getRunningScene()->getChildByTag(0xADB)) {
+            diediedie(nullptr);
+            return;
+        }
+        MenuLayer::keyBackClicked();
     }
 
     void ADBRefreshAll(CCObject* sender) {
