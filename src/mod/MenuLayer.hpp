@@ -3,6 +3,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/utils/web.hpp>
+#include "globals.hpp"
 
 using namespace geode::prelude;
 
@@ -16,6 +17,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
         auto item = CCMenuItemSpriteExtra::create(icon, this, menu_selector(ADBMenuLayer::adbMenu));
         menu->addChild(item);
         menu->updateLayout();
+        setKeypadEnabled(true);
 
         return true;
     }
@@ -27,10 +29,12 @@ class $modify(ADBMenuLayer, MenuLayer) {
             {"Flags", "https://abuse.jarvisdevil.com/flags.php"},
             {"Website", "https://abuse.jarvisdevil.com/"},
             {"Discord", "https://dsc.gg/devlin"},
-            {"Source Code", "https://github.com/thejarvisdevil/AbuseDB"},
+            {"Source", "https://github.com/thejarvisdevil/AbuseDB"},
             {"YouTube", "https://www.youtube.com/@jarvisdevlin"},
             {"Credits", ""},
         };
+
+        if (CCDirector::sharedDirector()->getRunningScene()->getChildByTag(0xADB)) return;
 
         auto winSize = CCDirector::sharedDirector()->getWinSize();
         auto mmm = CCLayerColor::create({0,0,0,0});
@@ -51,7 +55,7 @@ class $modify(ADBMenuLayer, MenuLayer) {
         for (int i = 0; i < 6; ++i) {
             float x = 84 + (i % 2) * 168;
             float y = boxH - 80 - (i / 2) * 60;
-            auto btnSprite = ButtonSprite::create(btns[i].label, btnW, false, "goldFont.fnt", "GJ_button_01.png", 30, 1.f);
+            auto btnSprite = ButtonSprite::create(btns[i].label, btnW, true, "goldFont.fnt", "GJ_button_01.png", 30, 1.f);
             auto btn = CCMenuItemSpriteExtra::create(btnSprite, this, menu_selector(ADBMenuLayer::onADBLink));
             btn->setTag(i);
             btn->setPosition({x, y});
@@ -62,11 +66,34 @@ class $modify(ADBMenuLayer, MenuLayer) {
 
         auto closeBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png"), this, menu_selector(ADBMenuLayer::diediedie));
         closeBtn->setPosition({0, boxH});
-        auto woop = CCMenu::createWithItem(closeBtn);
-        woop->setPosition({10, -10});
-        bg->addChild(woop);
+        auto closeMenu = CCMenu::createWithItem(closeBtn);
+        closeMenu->setPosition({10, -10});
+        bg->addChild(closeMenu);
+
+        auto refreshBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_updateBtn_001.png"), this, menu_selector(ADBMenuLayer::ADBRefreshAll));
+        refreshBtn->setPosition({boxW, 0});
+        auto refreshMenu = CCMenu::createWithItem(refreshBtn);
+        refreshMenu->setPosition({-10, 10});
+        bg->addChild(refreshMenu);
 
         CCDirector::sharedDirector()->getRunningScene()->addChild(mmm, 999);
+    }
+
+    void keyBackClicked() {
+        if (CCDirector::sharedDirector()->getRunningScene()->getChildByTag(0xADB)) {
+            diediedie(nullptr);
+            return;
+        }
+        MenuLayer::keyBackClicked();
+    }
+
+    void ADBRefreshAll(CCObject* sender) {
+        refreshAll();
+        FLAlertLayer::create(
+            "Refreshed",
+            "All AbuseDB data has been refreshed.",
+            "OK"
+        )->show();
     }
 
     void onADBLink(CCObject* sender) {

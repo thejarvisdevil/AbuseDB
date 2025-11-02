@@ -8,6 +8,7 @@ extern std::unordered_set<int> hiddenLvls, hiddenAccs;
 extern std::vector<std::string> moderators;
 extern std::vector<std::string> flaggedUsers;
 extern const std::filesystem::path ignoredLvls, ignoredAccs;
+extern void refreshAll();
 
 void saveLvls();
 void saveAccs();

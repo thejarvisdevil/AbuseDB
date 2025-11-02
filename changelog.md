@@ -1,3 +1,5 @@
+# v1.3.5
+- added a very useless refresh button in the abusedb menu that will only benefit one (1) person
 # v1.3.4
 - jarvisdevil.com/abuse/ ==> abuse.jarvisdevil.com
 # v1.3.3
