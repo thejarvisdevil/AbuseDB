@@ -172,7 +172,7 @@ class ReportAccount : public Popup<>, public FLAlertLayerProtocol {
                 }
             }
         });
-        reportListener.setFilter(req.post("https://jarvisdevil.com/abuse/report.php"));
+        reportListener.setFilter(req.post("https://abuse.jarvisdevil.com/report.php"));
     }
 
 public:

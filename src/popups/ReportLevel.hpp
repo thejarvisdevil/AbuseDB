@@ -166,7 +166,7 @@ class ReportLevel : public Popup<>, public FLAlertLayerProtocol {
                 }
             }
         });
-        m_reportListener.setFilter(req.post("https://jarvisdevil.com/abuse/report.php"));
+        m_reportListener.setFilter(req.post("https://abuse.jarvisdevil.com/report.php"));
     }
 
 public:
