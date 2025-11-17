@@ -1,3 +1,4 @@
+# lol
 name: Build Geode Mod
 
 on:
@@ -13,10 +14,16 @@ jobs:
       matrix:
         config:
         - name: Windows
-          os: windows-latest
+          os: ubuntu-latest
+          target: Win64
+          build-config: RelWithDebInfo
 
         - name: macOS
           os: macos-latest
+
+        - name: iOS
+          os: macos-latest
+          target: iOS
 
         - name: Android32
           os: ubuntu-latest
@@ -26,10 +33,6 @@ jobs:
           os: ubuntu-latest
           target: Android64
 
-        - name: iOS
-          os: macos-latest
-          target: iOS
-
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
 
@@ -37,10 +40,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build the mod
-        uses: geode-sdk/build-geode-mod@main
+        uses: hiimjasmine00/build-geode-mod@xwin
         with:
-          bindings: geode-sdk/bindings
-          bindings-ref: main
+          sdk: nightly
+          build-config: ${{ matrix.config.build-config || 'Release' }}
+          export-pdb: true
+          export-symbols: true
           combine: true
           target: ${{ matrix.config.target }}
 
